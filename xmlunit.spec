@@ -34,7 +34,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.4
-Release:        6.11%{?dist}
+Release:        6.12%{?dist}
 Epoch:          0
 Summary:        Provides classes to do asserts on xml
 License:        BSD
@@ -69,7 +69,7 @@ Javadoc for %{pkg_name}
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 sed -i /java.class.path/d build.xml
 # remove all binary libs and javadocs
@@ -87,13 +87,13 @@ sed -i 's/\r//g' README.txt LICENSE.txt
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 ant -Dbuild.compiler=modern -Dhaltonfailure=yes jar javadocs
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 mkdir -p $RPM_BUILD_ROOT%{_javadir}
@@ -113,7 +113,7 @@ cp -pr build/doc/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}
 %{?scl:EOF}
 
 %check
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 ant
 %{?scl:EOF}
@@ -125,6 +125,9 @@ ant
 %doc %{_javadocdir}/%{name}
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 0:1.4-6.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 0:1.4-6.11
 - maven33 rebuild
 
