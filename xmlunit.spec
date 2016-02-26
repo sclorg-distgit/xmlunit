@@ -34,7 +34,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.4
-Release:        6.12%{?dist}
+Release:        6.13%{?dist}
 Epoch:          0
 Summary:        Provides classes to do asserts on xml
 License:        BSD
@@ -125,6 +125,9 @@ ant
 %doc %{_javadocdir}/%{name}
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 0:1.4-6.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 0:1.4-6.12
 - maven33 rebuild #2
 
